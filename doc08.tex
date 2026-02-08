@@ -1,0 +1,91 @@
+% PREAMBLE
+
+\documentclass{article}
+
+% PKGS
+\usepackage{setspace}
+
+\title{RL Summary EN}
+\author{Georg Pernice, ..}
+\date{12.02.2026}
+
+\setcounter{tocdepth}{4}
+
+\begin{document}
+	\maketitle
+	\newpage
+	\doublespacing
+	\tableofcontents
+	\singlespacing
+	\newpage
+\section {00 - Orga and Intro}
+\section {01 -  Bandits and Explore}
+\section {02 - Opt. Dec. Making}
+\section {04 - Value Based Meth.}
+\section {05 - Policy Gradient}
+\section {06 - Offpolicy Actor critic}
+\section {07 - Control as Inference  }
+\section {08 - Trust Region Methods}
+\section {09 - Imitation Learning}
+\section {10 - Offline RL}
+\section {12 - Motion Primitives and Temp. Extend. Actions}
+\section {13 - Trafos}
+\section {14 - Diffusion}
+\section {14b Diffusion2}
+\section {15 - Diverse Behavior and Skill Discovering}
+\section {16 - Diffusion RL and Scaling RL}
+\subsection{Self Check Questions}
+    \begin{itemize}
+        \item What is problem when reusing off-policy data more often to update network parameters?
+            \begin{itemize}
+               \item 
+               Reusing off-policy data corresponds to increasing Replay Ratio or Update to Data (UTD) Ratio.
+               The fact that train data \textbf{and} targets change over time states a problem, leading to 
+               Placity Loss and Primary Bias. (See them explained below)
+            \end{itemize}
+        \item How to counteract the primacy bias?
+            \begin{itemize}
+                \item
+                \textbf{Primacy Bias} = tendency to overfit initial experiences which damages the
+                learn proess regarding other experiences. 
+                Resetting the environment in intervals helps especially when running SAC algorithm 
+                in 'humanoid run' environment.
+            \end{itemize}
+        \item What kinda regularization exist to  make RL scalable?
+            \begin{itemize}
+                \item Regularization in ML refers to prevention of overfitting by punishing model
+                complexity with additional loss term. (Ideas like Dropout, Punishing model size, ..)
+                \item The BRO ( Bigger Regularized Optimistic) algorithm uses 
+                    \begin{itemize}
+                        \item Weight Decay
+                        \item Layer Norm
+                        \item ..
+                    \end{itemize}
+                    It scales the Network by multiple blocks of
+                    \begin{itemize}
+                        \item Dense Layer
+                        \item Layer Norm
+                        \item ..
+                    \end{itemize}
+                \item In general in RL Neuron Resetting seems a valid regularization, used in the 'ReDo'
+                (Recycling Dormant Neurons) algorithm.
+                \item \textbf{Batch Normalization} acc. to Summary slide seems to be as well a regularization 
+                technique in RL
+            \end{itemize}
+        \item What is the downside to increasing the number of updates?
+            \begin{itemize}
+                \item Updating more often even does harm to the network return. As the targets will 
+                change updating too much on them doesnt make lots of sense. $\rightarrow$ 
+                Placicity Loss(lose ability to learn from new XP)  and Primary Bias (overfit initial XP) 
+                occur!
+                This question seems very similar to the first one imho.
+            \end{itemize}
+
+    \end{itemize}
+
+	
+\end{document}
+
+
+
+

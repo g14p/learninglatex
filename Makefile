@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 .SHELLFLAGS := -O extglob -c
-file := doc05
+file := doc08
 compile-once:
 	
 	pdflatex ${file}.tex && evince ${file}.pdf
