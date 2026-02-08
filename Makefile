@@ -1,18 +1,19 @@
 SHELL := /bin/bash
 .SHELLFLAGS := -O extglob -c
+file := doc05
 compile-once:
 	
-	pdflatex doc07.tex && evince doc07.pdf
+	pdflatex ${file}.tex && evince ${file}.pdf
 compile-twice:
-	pdflatex doc07.tex && pdflatex doc07.tex && evince doc07.pdf
+	pdflatex ${file}.tex && pdflatex ${file}.tex && evince ${file}.pdf
 
 build:
-	pdflatex doc07.tex
+	pdflatex ${file}.tex
 
-	bibtex doc07
+	bibtex ${file}
 
-	pdflatex doc07.tex && pdflatex doc07.tex && evince doc07.pdf
+	pdflatex ${file}.tex && pdflatex ${file}.tex && evince ${file}.pdf
 
 del:
-	rm doc07!(*.tex) # && rm texput.log
+	rm ${file}!(*.tex) # && rm texput.log
 
