@@ -4,6 +4,19 @@
 
 % PKGS
 \usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={RLSummaryKIT2026},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
 
 \title{RL Summary EN}
 \author{Georg Pernice, ..}
@@ -18,6 +31,9 @@
 	\tableofcontents
 	\singlespacing
 	\newpage
+\section {Preword}
+Obtain the Latex source code for this document here to compile translate it or create your own version: 
+\href{https://github.com/g14p/learninglatex}{https://github.com/g14p/learninglatex}
 \section {00 - Orga and Intro}
 \section {01 -  Bandits and Explore}
 \section {02 - Opt. Dec. Making}
@@ -82,8 +98,64 @@
             \end{itemize}
 
     \end{itemize}
+\section{Exercises with Math}
+Exercise 2: Policy differentiation
+ Compute the gradient of  $log p_\theta (tau)$ , where
+$log p_\theta (tau)$ : trajectory distribution induced by params theta
+theta     : policy parameters
 
-	
+\subsection{Multivariate Policy Exercise 3}
+Consider multi-variate policy distribution 
+$\pi(a|s) = \frac{1}{\sqrt{(2\pi)^{d_{e}} |{\sum}|}}$ $exp \left \{-\frac{1}{2} (a - \mu(s))^T \textstyle \sum ^{-1} (a - \mu(s)) \right \}$ 
+where $ a \in \mathbb{R}^{d_{e}}$,
+$ s \in \mathbb{R}^{d_e}$ 
+and we consider an isotropic covariance i.e.
+$\textstyle \sum = \sigma^2\textbf{I} $ 
+where $\textbf{I} \in \mathbb{R}^{d_e \times d_e}$ 
+and $\sigma \in \mathbb{R}^{+}$ 
+\\
+\\ 
+\textbf{Derive $\nabla_\sigma$ $log$ $\pi (a|s)$  }
+\textbf{Solution Approach:}
+\\
+$$
+    \nabla_{\sigma} \textstyle{log} \pi( a | s) = 
+  \nabla_{\sigma} \textstyle{log} \left \{
+    \frac{1}{\sqrt{(2\pi)^{d_{e}} |{\sum}|}} 
+    exp \left \{ - \frac{1}{2} 
+    (a - \mu(s))^T \textstyle \sum ^{-1} (a - \mu(s)) \right \}
+  \right \}
+$$
+Split the logs the exp dies because of right log. 
+Because we get a sum of two logs we can split the gradient as well.
+$$
+    \nabla_{\sigma} \textstyle{log} \pi( a | s) = \color{red} 
+  \nabla_{\sigma} \textstyle{log} \left \{
+    \frac{1}{\sqrt{(2\pi)^{d_{e}} \color{green}|{\sum}| \color{blue}}} 
+    \right \}\color{black} 
+    + \color{blue}\nabla_{\sigma}  
+    \left \{ - \frac{1}{2} 
+    (a - \mu(s))^T \color{green}\textstyle \sum ^{-1}\color{blue} (a - \mu(s)) \right \}
+$$
+
+With the two identities 
+$\color{green}\textstyle{\sum^{-1}}=\frac{1}{\sigma^2}\textbf{I}$
+and
+$\color{green}\textstyle{|\sum|} = (\sigma^2)^{d_e} $
+for the covariance we arrive at:
+
+
+$$
+    \nabla_{\sigma} \textstyle{log} \pi( a | s) = \color{red} 
+  \nabla_{\sigma} \textstyle{log} \left \{
+    \frac{1}{\sqrt{(2\pi)^{d_{e}} \color{green}|(\sigma^2)^{d_e}| \color{blue}}} 
+    \right \}\color{black} 
+    + \color{blue}\nabla_{\sigma}  
+    \left \{ - \frac{1}{2}  \color{green}\textstyle \frac{1}{\sigma^2}\color{blue} 
+    (a - \mu(s))^T \color{green}\textstyle \textbf{I}\color{blue} (a - \mu(s)) \right \}
+$$
+
+
 \end{document}
 
 
