@@ -1,7 +1,6 @@
 testingground.tex
 *.aux
 *.log
-*.pdf
 *blx.bib
 *.xml
 *.toc
